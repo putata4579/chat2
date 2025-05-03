@@ -24,8 +24,8 @@
     <p id="status">모델을 불러오는 중입니다...</p>
     <img id="status-image" src="quiet.jpg" alt="상태 이미지">
 
-    <!-- 올바른 Teachable Machine 오디오 라이브러리 -->
-    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/audio@0.8.4/dist/teachablemachine-audio.min.js"></script>
+    <!-- ✅ 올바른 Teachable Machine 사운드 라이브러리 -->
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/sound@0.8.4/dist/teachablemachine-sound.min.js"></script>
 
     <script type="text/javascript">
         const URL = "https://teachablemachine.withgoogle.com/models/zvC-4aSDG/";
@@ -36,7 +36,7 @@
             const checkpointURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
 
-            recognizer = await tmAudio.load(checkpointURL, metadataURL);
+            recognizer = await tmSound.load(checkpointURL, metadataURL);
             await recognizer.ensureModelLoaded();
 
             document.getElementById("status").innerText = "모델 로딩 완료! 감지 중...";
