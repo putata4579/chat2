@@ -24,7 +24,7 @@
     <p id="status">모델을 불러오는 중입니다...</p>
     <img id="status-image" src="quiet.jpg" alt="상태 이미지">
 
-    <!-- ✅ 올바른 tmAudio 라이브러리 경로 -->
+    <!-- 올바른 Teachable Machine 오디오 라이브러리 -->
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/audio@0.8.4/dist/teachablemachine-audio.min.js"></script>
 
     <script type="text/javascript">
@@ -40,10 +40,10 @@
             await recognizer.ensureModelLoaded();
 
             document.getElementById("status").innerText = "모델 로딩 완료! 감지 중...";
-            predict();
+            loop();
         }
 
-        async function predict() {
+        async function loop() {
             const prediction = await recognizer.predict();
             let isChatter = false;
 
@@ -58,4 +58,16 @@
 
             if (isChatter) {
                 statusText.innerText = "⚠️ 잡담 감지됨!";
-                statusImage.src = "warning
+                statusImage.src = "warning.jpg";
+            } else {
+                statusText.innerText = "정상 상태 (조용함)";
+                statusImage.src = "quiet.jpg";
+            }
+
+            requestAnimationFrame(loop);
+        }
+
+        init();
+    </script>
+</body>
+</html>
